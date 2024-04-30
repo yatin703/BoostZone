@@ -1,0 +1,27 @@
+# Use the official PHP image as base
+FROM php:latest
+
+# Set the working directory inside the container
+WORKDIR /var/www/html
+
+# Copy the PHP application files into the container
+COPY . .
+
+# Install MySQL client and other dependencies
+RUN apt-get update && apt-get install -y \
+    default-mysql-client \
+    git \
+    unzip \
+    && rm -rf /var/lib/apt/lists/*
+
+# Install Composer (PHP dependency manager)
+RUN curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+
+# Install PHP extensions required by your application (example)
+RUN docker-php-ext-install pdo pdo_mysql
+
+# Expose port 8080 (change the port number as needed)
+EXPOSE 8080
+
+# Start PHP built-in server on port 8080
+CMD ["php", "-S", "0.0.0.0:8080", "-t", "/var/www/html/Home/"]
