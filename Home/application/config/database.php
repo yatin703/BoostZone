@@ -75,7 +75,7 @@ $query_builder = TRUE;
 
 $db['default'] = array(
 	'dsn'	=> '',
-	'hostname' => 'localhost',
+	'hostname' => '34.133.89.72',
 	'username' => 'root',
 	'password' => 'Neopac@456',
 	'database' => 'senseclo_envato_bluhen',
